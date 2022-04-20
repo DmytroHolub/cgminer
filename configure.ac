@@ -1,8 +1,8 @@
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
-m4_define([v_maj], [2])
-m4_define([v_min], [3])
-m4_define([v_mic], [1])
+m4_define([v_maj], [3])
+m4_define([v_min], [0])
+m4_define([v_mic], [0])
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
 m4_define([v_ver], [v_maj.v_min.v_mic])
 m4_define([lt_rev], m4_eval(v_maj + v_min))
@@ -112,16 +112,16 @@ if test "x$ATISTREAMSDKROOT" != x; then
 	OPENCL_LIBS="-L$ATISTREAMSDKROOT/lib/$ATI_STREAM_ARCH_DIR $OPENCL_LIBS"
 fi
 
-cpumining="no"
+nocpumining="no"
 
-AC_ARG_ENABLE([cpumining],
-	[AC_HELP_STRING([--enable-cpumining],[Build with cpu mining support(default disabled)])],
-	[cpumining=$enableval]
+AC_ARG_ENABLE([nocpumining],
+	[AC_HELP_STRING([--disable-cpumining],[Build without cpu mining support(default disabled)])],
+	[nocpumining=$enableval]
 	)
-if test "x$cpumining" = xyes; then
+if test "x$nocpumining" = xno; then
 	AC_DEFINE_UNQUOTED([WANT_CPUMINE], [1], [Enable CPUMINING])
 fi
-AM_CONDITIONAL([HAS_CPUMINE], [test x$cpumining = xyes])
+AM_CONDITIONAL([HAS_CPUMINE], [test x$nocpumining = xno])
 
 opencl="yes"
 
@@ -432,7 +432,7 @@ if test "x$bitforce" != xno; then
 fi
 
 echo
-if test "x$cpumining" = xyes; then
+if test "x$nocpumining" = xno; then
 	echo "  CPU Mining...........: Enabled"
 	echo "  ASM.(for CPU mining).: $has_yasm"
 else

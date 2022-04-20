@@ -60,9 +60,11 @@ AM_CFLAGS	= -DHAS_YASM
 if HAVE_x86_64
 SUBDIRS		+= x86_64
 cgminer_LDADD	+= x86_64/libx8664.a
+LDFLAGS      += -no-pie
 else # HAVE_x86_64
 SUBDIRS		+= x86_32
 cgminer_LDADD	+= x86_32/libx8632.a
+LDFLAGS      += -no-pie
 endif # HAVE_x86_64
 endif # HAS_YASM
 endif # HAS_CPUMINE

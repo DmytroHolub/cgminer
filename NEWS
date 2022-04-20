@@ -1,3 +1,9 @@
+Version 3.0.0 - April 20, 2022
+
+- Configure building and support of all CPU mining code, --disable-cpumining
+is introduced instead of abolished --enable-cpumining one.
+
+
 Version 2.3.1 - February 24, 2012
 
 - Revert input and output code on diakgcn and phatk kernels to old style which

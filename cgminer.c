@@ -1,4 +1,5 @@
 /*
+ * Copyright 2022 Dmytro Holub
  * Copyright 2011-2012 Con Kolivas
  * Copyright 2011-2012 Luke Dashjr
  * Copyright 2010 Jeff Garzik
@@ -76,7 +77,7 @@ struct strategies strategies[] = {
 	{ "Load Balance" },
 };
 
-static char packagename[255];
+static char packagename[] = PACKAGE" "VERSION;
 
 int gpu_threads;
 
@@ -4353,8 +4354,6 @@ int main (int argc, char *argv[])
 	mutex_init(&control_lock);
 	rwlock_init(&blk_lock);
 	rwlock_init(&netacc_lock);
-
-	sprintf(packagename, "%s %s", PACKAGE, VERSION);
 
 #ifdef WANT_CPUMINE
 	init_max_name_len();
